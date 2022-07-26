@@ -7,6 +7,18 @@ import Build from './components/Build';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
+  const items = [
+    {
+      id: 1,
+      name: "Logitech K371",
+      imgURL: "asdfadfa.com"
+    },
+    {
+      id: 2,
+      name: "Razor",
+      imgURL: "asdfasdf.com"
+    }
+  ]
   return (
     <Router>
       <div className="App">
@@ -14,7 +26,11 @@ function App() {
         <Routes>
           <Route path="/" exact element={<Home />} />
           <Route path="/about" element={<About />} />
-          <Route path="/shop" exact element={<Shop />} />
+          <Route 
+            path="/shop"
+            exact 
+            element={<Shop products={items}/>} 
+          />
           <Route path="/build" exact element={<Build />} />
         </Routes>
       </div>

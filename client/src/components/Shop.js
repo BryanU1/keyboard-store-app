@@ -1,7 +1,9 @@
-function Shop() {
+function Shop(props) {
   return (
     <div>
-      Shop Page
+      {props.products.map((item) => (
+        <h1>{item.name}</h1>
+      ))}
     </div>
   );
 }

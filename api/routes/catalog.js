@@ -28,3 +28,5 @@ item_controller.item_detail);
 
 router.get('/book', 
 item_controller.item_list);
+
+module.exports = router;

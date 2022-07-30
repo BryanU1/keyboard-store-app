@@ -1,7 +1,10 @@
 var Item = require('../models/item');
+var async = require('async');
 
 exports.index = function(req, res) {
-  res.send('NOT IMPLEMENTED: Site Home Page');
+  Item.countDocuments({}, function(err, results) {
+    res.render('index', {title: 'KeyB Home', error: err, data: results});
+  });
 }
 
 exports.item_list = function(req, res) {

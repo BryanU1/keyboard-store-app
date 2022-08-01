@@ -1,5 +1,6 @@
 var Item = require('../models/item');
 var async = require('async');
+var { body, validationResult } = require('express-validator');
 
 exports.index = function(req, res) {
   Item.countDocuments({}, function(err, results) {
@@ -22,13 +23,45 @@ exports.item_detail = function(req, res) {
   res.send('NOT IMPLEMENTED: Item detail:' + req.params.id)
 }
 
+// Display Item create form on GET
 exports.item_create_get = function(req, res) {
-  res.send('NOT IMPLEMENTED: Item create GET');
+  res.render('item_form', {title:'Create Item'});
 }
 
-exports.item_create_post = function(req, res) {
-  res.send('NOT IMPLEMENTED: Item create POST');
-}
+// Handle Genre create on POST
+exports.item_create_post = [
+  body('name', 'Item name required').isLength({min:1}).escape(),
+  body('imgUrl').trim().escape(),
+  body('price').isFloat().escape().withMessage('Price must be a number'),
+  body('type').isAlpha().escape().withMessage('Type must contain letters'),
+
+  (req, res, next) => {
+    const errors = validationResult(req);
+
+    const item = new Item({
+      name: req.body.name,
+      imgUrl: req.body.imgUrl,
+      price: req.body.price,
+      type: req.body.type
+    });
+
+    if(!errors.isEmpty()) {
+      res.render('item_form', {
+        title: 'Create Item',
+        item,
+        errors: errors.array(),
+      });
+      return;
+    } else {
+      item.save((err) => {
+        if (err) {
+          return next(err);
+        }
+      })
+      res.redirect(item.url);
+    }
+  }
+]
 
 exports.item_delete_get = function(req, res) {
   res.send('NOT IMPLEMENTED: Item delete GET');

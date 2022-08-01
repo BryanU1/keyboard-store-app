@@ -9,7 +9,7 @@ exports.index = function(req, res) {
 }
 
 // Display list of all items
-exports.item_list = function(req, res) {
+exports.item_list = function(req, res, next) {
   Item.find({}, 'name price')
     .sort({name: 1})
     .exec(function (err, list_items) {
@@ -28,12 +28,12 @@ exports.item_create_get = function(req, res) {
   res.render('item_form', {title:'Create Item'});
 }
 
-// Handle Genre create on POST
+// Handle Item create on POST
 exports.item_create_post = [
-  body('name', 'Item name required').isLength({min:1}).escape(),
+  body('name', 'Item name required').trim().isLength({min:1}).escape(),
   body('imgUrl').trim().escape(),
   body('price').isFloat().escape().withMessage('Price must be a number'),
-  body('type').isAlpha().escape().withMessage('Type must contain letters'),
+  body('type').trim().isAlpha().escape().withMessage('Type must contain letters'),
 
   (req, res, next) => {
     const errors = validationResult(req);

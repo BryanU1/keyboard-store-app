@@ -43,7 +43,7 @@ exports.item_create_get = function(req, res) {
 // Handle Item create on POST
 exports.item_create_post = [
   body('name', 'Item name required').trim().isLength({min:1}).escape(),
-  body('imgUrl').trim().escape(),
+  body('imgUrl').trim(),
   body('price').isFloat().escape().withMessage('Price must be a number'),
   body('type').trim().isAlpha().escape().withMessage('Type must contain letters'),
 

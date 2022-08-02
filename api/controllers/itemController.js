@@ -19,8 +19,20 @@ exports.item_list = function(req, res, next) {
     })
   }
 
-exports.item_detail = function(req, res) {
-  res.send('NOT IMPLEMENTED: Item detail:' + req.params.id)
+
+exports.item_detail = function(req, res, next) {
+  Item.findById(req.params.id)
+    .exec((err, results) => {
+      if (err) {return next(err);}
+      if (results==null) {
+        var err = new Error('Item not found');
+        err.status = 404;
+        return next(err);
+      }
+      res.render('item_detail', {
+        item: results
+      });
+    });
 }
 
 // Display Item create form on GET

@@ -79,16 +79,16 @@ exports.item_delete_get = function(req, res, next) {
   Item.findById(req.params.id).exec(function(err, results) {
     if (err) { return next(err); }
     if (results==null) {
-      res.redirect('/catalog/items');
+      res.redirect('/catalog/item');
     }
-    res.render('item_delete', {title: 'Delete Item', item: results})
+    res.render('item_delete', {title: 'Item', item: results})
   })
 }
 
 exports.item_delete_post = function(req, res, next) {
   Item.findByIdAndRemove(req.params.id, function(err) {
     if (err) { return next(err); }
-    res.redirect('/catalog/items')
+    res.redirect('/catalog/item')
   })
 }
 

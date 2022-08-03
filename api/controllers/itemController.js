@@ -36,7 +36,7 @@ exports.item_detail = function(req, res, next) {
 }
 
 // Display Item create form on GET
-exports.item_create_get = function(req, res) {
+exports.item_create_get = function(req, res, next) {
   res.render('item_form', {title:'Create Item'});
 }
 
@@ -75,12 +75,21 @@ exports.item_create_post = [
   }
 ]
 
-exports.item_delete_get = function(req, res) {
-  res.send('NOT IMPLEMENTED: Item delete GET');
+exports.item_delete_get = function(req, res, next) {
+  Item.findById(req.params.id).exec(function(err, results) {
+    if (err) { return next(err); }
+    if (results==null) {
+      res.redirect('/catalog/items');
+    }
+    res.render('item_delete', {title: 'Delete Item', item: results})
+  })
 }
 
-exports.item_delete_post = function(req, res) {
-  res.send('NOT IMPLEMENTED: Item delete POST');
+exports.item_delete_post = function(req, res, next) {
+  Item.findByIdAndRemove(req.params.id, function(err) {
+    if (err) { return next(err); }
+    res.redirect('/catalog/items')
+  })
 }
 
 exports.item_update_get = function(req, res) {

@@ -1,11 +1,19 @@
 var Item = require('../models/item');
+var Type = require('../models/type');
 var async = require('async');
 var { body, validationResult } = require('express-validator');
 
 exports.index = function(req, res) {
-  Item.countDocuments({}, function(err, results) {
-    res.render('index', {title: 'KeyB Home', error: err, data: results});
-  });
+  async.parallel({
+    item_count(callback) {
+      Item.countDocuments({}, callback);
+    },
+    type_count(callback) {
+      Type.countDocuments({}, callback);
+    }
+  }, function(err, results) {
+    res.render('index', {title: 'KeyB Home Page', error: err, data: results})
+  })
 }
 
 // Display list of all items

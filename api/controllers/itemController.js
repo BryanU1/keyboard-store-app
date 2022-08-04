@@ -92,10 +92,45 @@ exports.item_delete_post = function(req, res, next) {
   })
 }
 
-exports.item_update_get = function(req, res) {
-  res.send('NOT IMPLEMENTED: Item update GET');
+exports.item_update_get = function(req, res, next) {
+  Item.findById(req.params.id).exec(function(err, results) {
+    if(err) { return next(err); }
+    if(results===null) {
+      var err = new Error('Item not found');
+      err.status = 404;
+      return next(err);
+    }
+    res.render('item_form', {title: 'Update Item', item: results});
+  })
 }
 
-exports.item_update_post = function(req, res) {
-  res.send('NOT IMPLEMETNTED: Item update POST');
-}
+exports.item_update_post = [
+  body('name', 'Item name required').trim().isLength({min:1}).escape(),
+  body('imgUrl').trim(),
+  body('price').isFloat().escape().withMessage('Price must be a number'),
+  body('type').trim().isAlpha().escape().withMessage('Type must contain letters'),
+
+  (req, res, next) => {
+    var errors = validationResult(req);
+
+    var item = new Item({
+      name: req.body.name,
+      imgUrl: req.body.imgUrl,
+      price: req.body.price,
+      type: req.body.type,
+      _id: req.params.id
+    });
+
+    if (!errors.isEmpty()) {
+      res.render('item_form', {title: 'Update Item', item, errors: errors.array() });
+      return;
+    } 
+    else {
+      Item.findByIdAndUpdate(req.params.id, item, {}, function(err, results) {
+        if (err) { return next(err); }
+
+        res.redirect(results.url)
+      });
+    }
+  }
+]

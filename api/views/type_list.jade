@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  h1= title 
+
+  ul 
+    each value in type_list 
+      li 
+        a(href=value.url)   #{value.name}
+
+    else 
+      li There are no types.

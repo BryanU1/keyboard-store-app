@@ -1,8 +1,14 @@
 var Type = require('../models/type');
 var { body, validation } = require('express-validator');
+const { nextTick } = require('async');
 
-exports.type_list = function(req, res) {
-  res.send('NOT IMPLEMENTED: Types list');
+exports.type_list = function(req, res, next) {
+  Type.find({})
+    .sort({name: 1})
+    .exec(function(err, results) {
+      if (err) { return next(err); }
+      res.render('type_list', {title: 'Type List', type_list: results})
+    })
 }
 
 exports.type_detail = function(req, res) {

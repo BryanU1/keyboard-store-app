@@ -16,10 +16,10 @@ exports.type_detail = function(req, res) {
 }
 
 exports.type_create_get = function(req, res) {
-  res.send('NOT IMPLEMENTED: Type create GET');
+  res.render('type_form', {title: 'Create Type'});
 }
 
-exports.type_create_post = function(req, res) {
+exports.type_create_post = function(req, res, next) {
   res.send('NOT IMPLEMENTED: Type create POST');
 }
 

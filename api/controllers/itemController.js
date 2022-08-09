@@ -44,7 +44,7 @@ exports.item_detail = function(req, res, next) {
 }
 
 // Display Item create form on GET
-exports.item_create_get = function(req, res, next) {
+exports.item_create_get = function(req, res) {
   res.render('item_form', {title:'Create Item'});
 }
 

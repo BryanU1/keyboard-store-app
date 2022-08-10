@@ -1,5 +1,5 @@
 var Type = require('../models/type');
-var { body, validation } = require('express-validator');
+var { body, validation, validationResult } = require('express-validator');
 const { nextTick } = require('async');
 
 exports.type_list = function(req, res, next) {
@@ -19,9 +19,30 @@ exports.type_create_get = function(req, res) {
   res.render('type_form', {title: 'Create Type'});
 }
 
-exports.type_create_post = function(req, res, next) {
-  res.send('NOT IMPLEMENTED: Type create POST');
-}
+exports.type_create_post = [
+  body('name', 'Category name required').trim().isLength({min: 1}).escape(),
+
+  (req, res, next) => {
+    var errors = validationResult(req);
+
+    var category = new Type ({
+      name: req.body.name
+    });
+
+    if (!errors.isEmpty()) {
+      res.render('type_form', {title: 'Create Type', type: category, errors: errors.array()});
+      return;
+    }
+    else {
+      category.save((err) => {
+        if (err) {
+          return next(err);
+        }
+      })
+      res.redirect(category.url);
+    }
+  }
+]
 
 exports.type_delete_get = function(req, res) {
   res.send('NOT IMPLEMENTED: Type delete GET');

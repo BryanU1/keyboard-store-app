@@ -38,7 +38,7 @@ router.get('/type/create',
 type_controller.type_create_get);
 
 router.post('/type/create',
-type_controller.type_create_get);
+type_controller.type_create_post);
 
 router.get('/type/:id/delete',
 type_controller.type_delete_get);

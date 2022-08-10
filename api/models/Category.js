@@ -2,16 +2,16 @@ var mongoose = require('mongoose');
 
 var Schema = mongoose.Schema;
 
-var TypeSchema = new Schema(
+var CategorySchema = new Schema(
   {
     name: {type: String, required: true, maxLength: 100},
   }
 )
 
-TypeSchema
+CategorySchema
   .virtual('url')
   .get(function() {
-    return '/catalog/type/' + this._id;
+    return '/catalog/category/' + this._id;
   });
 
-module.exports = mongoose.model('Type', TypeSchema);
+module.exports = mongoose.model('Category', CategorySchema);

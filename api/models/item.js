@@ -7,7 +7,7 @@ var ItemSchema = new Schema(
     name: {type: String, required: true, maxLength: 100},
     imgUrl: {type: String, required: true, maxLength: 500},
     price: {type: Number, required: true},
-    type: {type: String}
+    category: {type: String}
   }
 );
 

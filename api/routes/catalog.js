@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 var item_controller = require('../controllers/itemController');
-var type_controller = require('../controllers/typeController');
+var category_controller = require('../controllers/categoryController');
 
 router.get('/', item_controller.index);
 
@@ -32,30 +32,30 @@ item_controller.item_detail);
 router.get('/item', 
 item_controller.item_list);
 
-// TYPE ROUTES
+// CATEGORY ROUTES
 
-router.get('/type/create',
-type_controller.type_create_get);
+router.get('/category/create',
+category_controller.category_create_get);
 
-router.post('/type/create',
-type_controller.type_create_post);
+router.post('/category/create',
+category_controller.category_create_post);
 
-router.get('/type/:id/delete',
-type_controller.type_delete_get);
+router.get('/category/:id/delete',
+category_controller.category_delete_get);
 
-router.post('/type/:id/delete',
-type_controller.type_delete_post);
+router.post('/category/:id/delete',
+category_controller.category_delete_post);
 
-router.get('/type/:id/update',
-type_controller.type_update_get);
+router.get('/category/:id/update',
+category_controller.category_update_get);
 
-router.post('/type/:id/update',
-type_controller.type_update_post);
+router.post('/category/:id/update',
+category_controller.category_update_post);
 
-router.get('/type/:id',
-type_controller.type_detail);
+router.get('/category/:id',
+category_controller.category_detail);
 
-router.get('/type',
-type_controller.type_list);
+router.get('/category',
+category_controller.category_list);
 
 module.exports = router;

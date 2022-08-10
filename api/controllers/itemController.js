@@ -1,5 +1,5 @@
 var Item = require('../models/item');
-var Type = require('../models/type');
+var Category = require('../models/Category');
 var async = require('async');
 var { body, validationResult } = require('express-validator');
 
@@ -8,8 +8,8 @@ exports.index = function(req, res) {
     item_count(callback) {
       Item.countDocuments({}, callback);
     },
-    type_count(callback) {
-      Type.countDocuments({}, callback);
+    category_count(callback) {
+      Category.countDocuments({}, callback);
     }
   }, function(err, results) {
     res.render('index', {title: 'KeyB Home Page', error: err, data: results})
@@ -53,7 +53,7 @@ exports.item_create_post = [
   body('name', 'Item name required').trim().isLength({min:1}).escape(),
   body('imgUrl').trim(),
   body('price').isFloat().escape().withMessage('Price must be a number'),
-  body('type').trim().isAlpha().escape().withMessage('Type must contain letters'),
+  body('category').trim(),
 
   (req, res, next) => {
     const errors = validationResult(req);
@@ -62,7 +62,7 @@ exports.item_create_post = [
       name: req.body.name,
       imgUrl: req.body.imgUrl,
       price: req.body.price,
-      type: req.body.type
+      category: req.body.category
     });
 
     if(!errors.isEmpty()) {
@@ -116,7 +116,7 @@ exports.item_update_post = [
   body('name', 'Item name required').trim().isLength({min:1}).escape(),
   body('imgUrl').trim(),
   body('price').isFloat().escape().withMessage('Price must be a number'),
-  body('type').trim().isAlpha().escape().withMessage('Type must contain letters'),
+  body('category').trim().isAlpha().escape().withMessage('Category must contain letters'),
 
   (req, res, next) => {
     var errors = validationResult(req);
@@ -125,7 +125,7 @@ exports.item_update_post = [
       name: req.body.name,
       imgUrl: req.body.imgUrl,
       price: req.body.price,
-      type: req.body.type,
+      category: req.body.category,
       _id: req.params.id
     });
 

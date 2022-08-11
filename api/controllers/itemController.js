@@ -1,5 +1,5 @@
 var Item = require('../models/item');
-var Category = require('../models/Category');
+var Category = require('../models/category');
 var async = require('async');
 var { body, validationResult } = require('express-validator');
 
@@ -30,6 +30,7 @@ exports.item_list = function(req, res, next) {
 
 exports.item_detail = function(req, res, next) {
   Item.findById(req.params.id)
+    .populate('category')
     .exec((err, results) => {
       if (err) {return next(err);}
       if (results==null) {
@@ -45,15 +46,28 @@ exports.item_detail = function(req, res, next) {
 
 // Display Item create form on GET
 exports.item_create_get = function(req, res) {
-  res.render('item_form', {title:'Create Item'});
+  Category.find((err, results) => {
+    if (err) {
+      return next(err);
+    }
+    res.render('item_form', {title: 'Create Item', categories: results});
+  })
 }
 
 // Handle Item create on POST
 exports.item_create_post = [
+  (req, res, next) => {
+    if (!Array.isArray(req.body.category)) {
+      req.body.category = 
+        typeof req.body.category === 'undefined' ? [] : [req.body.category];
+    }
+    next();
+  },
+
   body('name', 'Item name required').trim().isLength({min:1}).escape(),
   body('imgUrl').trim(),
   body('price').isFloat().escape().withMessage('Price must be a number'),
-  body('category').trim(),
+  body('category.*').escape(),
 
   (req, res, next) => {
     const errors = validationResult(req);
@@ -65,21 +79,34 @@ exports.item_create_post = [
       category: req.body.category
     });
 
-    if(!errors.isEmpty()) {
-      res.render('item_form', {
-        title: 'Create Item',
-        item,
-        errors: errors.array(),
-      });
-      return;
-    } else {
-      item.save((err) => {
+    if (!errors.isEmpty()) {
+      Category.find((err, results) => {
         if (err) {
           return next(err);
         }
+
+        for (var category of results) {
+          if (item.category.includes(category._id)) {
+            category.checked = 'true';
+          }
+        }
+
+        res.render('item_form', {
+          title: 'Create Item',
+          item,
+          categories: results,
+          errors: errors.array(),
+        });
       })
-      res.redirect(item.url);
+      return;
     }
+
+    item.save((err) => {
+      if (err) {
+        return next(err);
+      }
+      res.redirect(item.url);
+    })
   }
 ]
 
@@ -101,22 +128,53 @@ exports.item_delete_post = function(req, res, next) {
 }
 
 exports.item_update_get = function(req, res, next) {
-  Item.findById(req.params.id).exec(function(err, results) {
-    if(err) { return next(err); }
-    if(results===null) {
-      var err = new Error('Item not found');
-      err.status = 404;
-      return next(err);
+  async.parallel(
+    {
+      item(callback) {
+        Item.findById(req.params.id)
+          .exec(callback);
+      },
+      categories(callback) {
+        Category.find(callback);
+      }
+    },
+    (err, results) => {
+      if (err) {
+        return next(err);
+      }
+      if (results.item == null) {
+        var err = new Error('Item not found')
+        err.status = 404;
+        return next(err);
+      }
+
+      for (var category of results.categories) {
+        if (results.item.category.includes(category._id)) {
+          category.checked = 'true';
+        }
+      }
+
+      res.render('item_form', {
+        title: 'Update Item',
+        categories: results.categories,
+        item: results.item
+      });
     }
-    res.render('item_form', {title: 'Update Item', item: results});
-  })
+  )
 }
 
 exports.item_update_post = [
+  (req, res, next) => {
+    if (!Array.isArray(req.body.category)) {
+      req.body.category = typeof req.body.category === 'undefined' ? [] : [req.body.category];
+    }
+    next();
+  },
+
   body('name', 'Item name required').trim().isLength({min:1}).escape(),
   body('imgUrl').trim(),
   body('price').isFloat().escape().withMessage('Price must be a number'),
-  body('category').trim().isAlpha().escape().withMessage('Category must contain letters'),
+  body('category.*').escape(),
 
   (req, res, next) => {
     var errors = validationResult(req);
@@ -130,15 +188,30 @@ exports.item_update_post = [
     });
 
     if (!errors.isEmpty()) {
-      res.render('item_form', {title: 'Update Item', item, errors: errors.array() });
+      Category.find((err, resutls) => {
+        if (err) {
+          return next(err);
+        }
+
+        for (var category of results) {
+          if (item.category.includes(category._id)) {
+            category.checked = 'true';
+          }
+        }
+
+        res.render('item_form', {
+          title: 'Update Item', 
+          item, 
+          categories: results,
+          errors: errors.array() });
+      });
       return;
     } 
-    else {
-      Item.findByIdAndUpdate(req.params.id, item, {}, function(err, results) {
-        if (err) { return next(err); }
+  
+    Item.findByIdAndUpdate(req.params.id, item, {}, function(err, results) {
+      if (err) { return next(err); }
 
-        res.redirect(results.url)
-      });
-    }
+      res.redirect(results.url)
+    });
   }
 ]

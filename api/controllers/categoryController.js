@@ -1,6 +1,7 @@
-var Category = require('../models/Category');
+var Category = require('../models/category');
+var Item = require('../models/item');
 var { body, validation, validationResult } = require('express-validator');
-const { nextTick } = require('async');
+var async = require('async');
 
 exports.category_list = function(req, res, next) {
   Category.find({})
@@ -11,8 +12,33 @@ exports.category_list = function(req, res, next) {
     })
 }
 
-exports.category_detail = function(req, res) {
-  res.send('NOT IMPLEMENTED: Category detail: ' + req.params.id);
+exports.category_detail = function(req, res, next) {
+  async.parallel(
+    {
+      category(callback) {
+        Category.findById(req.params.id).exec(callback);
+      },
+      items(callback) {
+        Item.find({category: req.params.id}).exec(callback);
+      }
+    },
+    (err, results) => {
+      if (err) {
+        return next(err);
+      }
+      if (results.category == null) {
+        var err = new Error('Category not found');
+        err.status = 404;
+        return next(err);
+      }
+
+      res.render('category_detail', {
+        title: 'Category Detail',
+        category: results.category,
+        items: results.items
+      })
+    }
+  )
 }
 
 exports.category_create_get = function(req, res) {
@@ -30,7 +56,11 @@ exports.category_create_post = [
     });
 
     if (!errors.isEmpty()) {
-      res.render('category_form', {title: 'Create Category', category: category, errors: errors.array()});
+      res.render('category_form', {
+        title: 'Create Category', 
+        category: category, 
+        errors: errors.array()
+      });
       return;
     }
     else {

@@ -2,6 +2,7 @@ var Category = require('../models/category');
 var Item = require('../models/item');
 var { body, validation, validationResult } = require('express-validator');
 var async = require('async');
+const category = require('../models/category');
 
 exports.category_list = function(req, res, next) {
   Category.find({})
@@ -74,18 +75,98 @@ exports.category_create_post = [
   }
 ]
 
-exports.category_delete_get = function(req, res) {
-  res.send('NOT IMPLEMENTED: Category delete GET');
+exports.category_delete_get = function(req, res, next) {
+  async.parallel(
+    {
+      category(callback) {
+        Category.findById(req.params.id).exec(callback);
+      },
+      items(callback) {
+        Item.find({category: req.params.id}).exec(callback);
+      }
+    },
+    (err, results) => {
+      if (err) {
+        return next(err);
+      }
+      if (results.category == null) {
+        res.redirect('/catalog/category');
+      }
+
+      res.render('category_delete', {
+        title: 'Delete Category',
+        category: results.category,
+        items: results.items
+      });
+    }
+  );
 }
 
-exports.category_delete_post = function(req, res) {
-  res.send('NOT IMPLEMENTED: Category delete POST');
+exports.category_delete_post = function(req, res, next) {
+  async.parallel(
+    {
+      category(callback) {
+        Category.findById(req.params.id).exec(callback);
+      },
+      items(callback) {
+        Item.find({category: req.params.id}).exec(callback);
+      }
+    },
+    (err, results) => {
+      if (err) {
+        return next(err);
+      }
+      if (results.items.length > 0) {
+        res.render('category_delete', {
+          title: 'Delete Category',
+          category: results.category,
+          items: results.item
+        });
+        return;
+      }
+      Category.findByIdAndRemove(req.params.id, 
+        (err, results) => {
+          if (err) {
+            return next(err);
+          }
+          res.redirect('/catalog/category');
+        }
+      );
+    }
+  );
 }
 
-exports.category_update_get = function(req, res) {
-  res.send('NOT IMPLEMENTED: Category update GET');
+exports.category_update_get = function(req, res, next) {
+  Category.findById(req.params.id)
+    .exec((err, results) => {
+      if (err) { return next(err); }
+
+      res.render('category_form', {title: 'Update Category', category: results});
+    })
 }
 
-exports.category_update_post = function(req, res) {
-  res.send('NOT IMPLEMENTED: Category update POST');
-}
+exports.category_update_post = [
+  body('name', 'Category name required').trim().isLength({min: 1}).escape(),
+
+  (req, res, next) => {
+    var errors = validationResult(req);
+
+    var category = new Category({
+      name: req.body.name,
+      _id: req.params.id
+    });
+
+    if (!errors.isEmpty()) {
+      res.render('category_form', {
+        title: 'Update Category', 
+        category
+      })
+    }
+
+    Category.findByIdAndUpdate(req.params.id, category, {}, function(err, results) {
+      if (err) { return next(err); }
+
+      res.redirect(results.url);
+    });
+  }
+]

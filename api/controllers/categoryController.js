@@ -2,7 +2,6 @@ var Category = require('../models/category');
 var Item = require('../models/item');
 var { body, validation, validationResult } = require('express-validator');
 var async = require('async');
-const category = require('../models/category');
 
 exports.category_list = function(req, res, next) {
   Category.find({})
@@ -170,3 +169,10 @@ exports.category_update_post = [
     });
   }
 ]
+
+// API routes
+
+exports.testApi = function(req, res) {
+  res.send('API is working properly');
+}
+

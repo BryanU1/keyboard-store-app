@@ -4,7 +4,7 @@ function Home() {
   const [data, setData] = useState('');
 
   useEffect(() => {
-    const url = 'http://localhost:5000/api/';
+    const url = 'http://localhost:5000/api';
     fetch(url)
       .then((res) => res.text())
       .then((text) => setData(text))

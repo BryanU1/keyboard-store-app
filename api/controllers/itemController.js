@@ -215,3 +215,27 @@ exports.item_update_post = [
     });
   }
 ]
+
+// API Routes
+
+exports.api_items_get = function(req, res, next) {
+  Item.find()
+    .populate('category')
+    .exec(function(err, results) {
+      if (err) { return next(err); }
+
+      res.json(results);
+    })
+}
+
+exports.api_items_post = function(req, res, next) {
+  res.json({message: 'NOT IMPLEMENTED YET: Create item'});
+}
+
+exports.api_items_put = function(req, res, next) {
+  res.json({message: 'NOT IMPLEMENTED YET: Update item'});
+}
+
+exports.api_items_delete = function (req, res, next) {
+  res.json({message: 'NOT IMPLEMENETED YET: Delete item'})
+}

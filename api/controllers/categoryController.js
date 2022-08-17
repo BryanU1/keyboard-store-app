@@ -172,7 +172,18 @@ exports.category_update_post = [
 
 // API routes
 
-exports.testApi = function(req, res) {
-  res.send('API is working properly');
+exports.api_category_get = function(req, res) {
+  res.json({message: 'NOT IMPLEMENTED YET: List of items'});
 }
 
+exports.api_category_post = function(req, res) {
+  res.json({message: 'NOT IMPLEMENTED YET: Create item'});
+}
+
+exports.api_category_put = function(req, res) {
+  res.json({message: 'NOT IMPLEMENTED YET: Update item'});
+}
+
+exports.api_category_delete = function(req, res) {
+  res.json({message: 'NOT IMPLEMENTED YET: List of items'});
+}

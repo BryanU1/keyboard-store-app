@@ -6,6 +6,7 @@ import Shop from './components/Shop';
 import Build from './components/Build';
 import ItemDetail from './components/ItemDetail';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
 function App() {
   const items = [
@@ -20,6 +21,7 @@ function App() {
       imgURL: "https://cdn.shopify.com/s/files/1/1473/3902/products/8b9cc7c9808a81fc8db0eaf67a4d79d7_3a068836-3c81-495d-83f3-0083f027a5a0_460x.jpg?v=1653290788"
     }
   ]
+
   return (
     <Router>
       <div className="App">

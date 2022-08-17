@@ -1,19 +1,34 @@
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'
 
-function Shop(props) {
-  const item = props.products.map((item) => (
+function Shop() {
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    const url = 'http://localhost:5000/api/items';
+    fetch(url)
+      .then((res) => res.text())
+      .then((text) => {
+        const obj = JSON.parse(text);
+        setItems(obj);
+        console.log(obj);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  const itemList = items.map((item) => (
     <li key={item.id}>
-      <Link to={`/shop/${item.id}`}>
+      <Link to={`/shop/${item._id}`}>
         <h1>
-          {item.name}
+          {item.name} - ${item.price}
         </h1>
-        <img src={item.imgURL} alt="keyboard"></img>
+        <img src={item.imgUrl} alt="keyboard"></img>
       </Link>
     </li>
   ));
   return (
     <ul>
-      {item}
+      {itemList}
     </ul>
   );
 }

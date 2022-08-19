@@ -14,10 +14,11 @@ function Shop() {
         console.log(obj);
       })
       .catch((err) => console.log(err));
+    
   }, []);
 
   const itemList = items.map((item) => (
-    <li key={item.id}>
+    <li key={item._id}>
       <Link to={`/shop/${item._id}`}>
         <h1>
           {item.name} - ${item.price}

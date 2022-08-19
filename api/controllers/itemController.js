@@ -218,9 +218,18 @@ exports.item_update_post = [
 
 // API Routes
 
-exports.api_items_get = function(req, res, next) {
+exports.api_items_list_get = function(req, res, next) {
   Item.find()
     .populate('category')
+    .exec(function(err, results) {
+      if (err) { return next(err); }
+
+      res.json(results);
+    })
+}
+
+exports.api_item_detail_get = function(req, res, next) {
+  Item.findById(req.params.id)
     .exec(function(err, results) {
       if (err) { return next(err); }
 

@@ -7,12 +7,8 @@ function Shop() {
   useEffect(() => {
     const url = 'http://localhost:5000/api/items';
     fetch(url)
-      .then((res) => res.text())
-      .then((text) => {
-        const obj = JSON.parse(text);
-        setItems(obj);
-        console.log(obj);
-      })
+      .then((res) => res.json())
+      .then((json) => setItems(json))
       .catch((err) => console.log(err));
     
   }, []);
@@ -27,6 +23,7 @@ function Shop() {
       </Link>
     </li>
   ));
+
   return (
     <ul>
       {itemList}

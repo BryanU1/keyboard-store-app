@@ -68,8 +68,9 @@ exports.category_create_post = [
         if (err) {
           return next(err);
         }
+        
+        res.redirect(category.url);
       })
-      res.redirect(category.url);
     }
   }
 ]
@@ -172,8 +173,13 @@ exports.category_update_post = [
 
 // API routes
 
-exports.api_category_get = function(req, res) {
-  res.json({message: 'NOT IMPLEMENTED YET: List of items'});
+exports.api_category_get = function(req, res, next) {
+  Category.find()
+    .exec(function(err, results) {
+      if (err) { return next(err); }
+      
+      return res.json(results);
+    })
 }
 
 exports.api_category_post = function(req, res) {

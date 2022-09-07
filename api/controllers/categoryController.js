@@ -2,6 +2,7 @@ var Category = require('../models/category');
 var Item = require('../models/item');
 var { body, validation, validationResult } = require('express-validator');
 var async = require('async');
+const category = require('../models/category');
 
 exports.category_list = function(req, res, next) {
   Category.find({})
@@ -173,13 +174,34 @@ exports.category_update_post = [
 
 // API routes
 
-exports.api_category_get = function(req, res, next) {
+exports.api_category_list_get = function(req, res, next) {
   Category.find()
     .exec(function(err, results) {
       if (err) { return next(err); }
       
       return res.json(results);
     })
+}
+
+exports.api_category_detail_get = function(req, res, next) {
+  async.parallel(
+    {
+      category(callback) {
+        Category.findById(req.params.id).exec(callback);
+      },
+      items(callback) {
+        Item.find({category: req.params.id}).exec(callback);
+      }
+    },
+    (err, results) => {
+      if (err) { return next(err); }
+      var json = {
+        category: [results.category],
+        items: results.items
+      }
+      res.json(json);
+    }
+  )
 }
 
 exports.api_category_post = function(req, res) {

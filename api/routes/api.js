@@ -12,6 +12,8 @@ router.get('/items', item_controllers.api_items_list_get);
 
 router.get('/item/:id', item_controllers.api_item_detail_get);
 
-router.get('/categories', category_controllers.api_category_get);
+router.get('/categories', category_controllers.api_category_list_get);
+
+router.get('/category/:id', category_controllers.api_category_detail_get);
 
 module.exports = router;

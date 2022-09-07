@@ -16,8 +16,6 @@ function Build(prop) {
 
   const categories = localStorage.getItem('categories');
   const categoryList = JSON.parse(categories);
-  console.log(categoryList);
-
   return (
     <div>
       <table>
@@ -32,37 +30,37 @@ function Build(prop) {
           {prop.inventory.case
             ? <Selected item={prop.inventory.case} />
             : <NotSelected category={
-              categoryList.find(el => el.name == 'Case')
+              categoryList.find(el => el.name === 'Case')
             } />
           }
           {prop.inventory.plate
             ? <Selected item={prop.inventory.plate} />
             : <NotSelected category={
-              categoryList.find(el => el.name == 'Plate')
+              categoryList.find(el => el.name === 'Plate')
             } />
           }
           {prop.inventory.pcb
             ? <Selected item={prop.inventory.pcb} />
             : <NotSelected category={
-              categoryList.find(el => el.name == 'PCB')
+              categoryList.find(el => el.name === 'PCB')
             } />
           }
           {prop.inventory.stabilizers
             ? <Selected item={prop.inventory.stabilizers} />
             : <NotSelected category={
-              categoryList.find(el => el.name == 'Stabilizers')
+              categoryList.find(el => el.name === 'Stabilizers')
             } />
           }
           {prop.inventory.switches
             ? <Selected item={prop.inventory.switches} />
             : <NotSelected category={
-              categoryList.find(el => el.name == 'Switches')
+              categoryList.find(el => el.name === 'Switches')
             } />
           }
           {prop.inventory.keycaps
             ? <Selected item={prop.inventory.keycaps} />
             : <NotSelected category={
-              categoryList.find(el => el.name == 'Keycaps')
+              categoryList.find(el => el.name === 'Keycaps')
             } />
           }
         </tbody>

@@ -2,72 +2,86 @@ import { useState, useEffect } from 'react';
 import NotSelected from './NotSelected';
 import Selected from './Selected';
 
-function Build(prop) {
-  const [ category, setCategory] = useState([]);
+function Build() {
+  const [ category, setCategory] = useState([])
 
-  useEffect(() => {
-    const url = 'http://localhost:5000/api/categories';
+  if (localStorage.getItem('inventory') === null) {
+    const obj = {
+      case: {},
+      plate: {},
+      pcb: {},
+      stabilizers: {},
+      switches: {},
+      keycaps: {}
+    }
+
+    localStorage.setItem('inventory', JSON.stringify(obj));
+  }
+
+  const url = 'http://localhost:5000/api/categories';
     
+  useEffect(() => {
     fetch(url)
       .then(res => res.json())
       .then(json => {
         localStorage.setItem('categories', JSON.stringify(json));
-        setCategory(json);
+        setCategory(json)
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [])
 
   const addToCart = () => {
-    localStorage.setItem('inventory', JSON.stringify([]));
+    // localStorage.setItem('inventory', JSON.stringify({}));
   }
 
-  const categories = localStorage.getItem('categories');
-  const categoryList = JSON.parse(categories);
+  const categories = JSON.parse(localStorage.getItem('categories'));
+  const inventory = JSON.parse(localStorage.getItem('inventory'));
   return (
     <div>
       <table>
         <thead>
           <tr>
             <th>Categories</th>
-            <th>Selection</th>
+            <th>Image</th>
+            <th>Name</th>
             <th>Price</th>
           </tr>
         </thead>
         <tbody>
-          {prop.inventory.case
-            ? <Selected item={prop.inventory.case} />
+          {inventory.case.selected
+            ? <Selected item={inventory.case} />
             : <NotSelected category={
-              categoryList.find(el => el.name === 'Case')
+              categories.find(el => el.name === 'Case')
             } />
           }
-          {prop.inventory.plate
-            ? <Selected item={prop.inventory.plate} />
+          {inventory.plate.selected
+            ? <Selected item={inventory.plate} />
             : <NotSelected category={
-              categoryList.find(el => el.name === 'Plate')
+              categories.find(el => el.name === 'Plate')
             } />
           }
-          {prop.inventory.pcb
-            ? <Selected item={prop.inventory.pcb} />
+          {inventory.pcb.selected
+            ? <Selected item={inventory.pcb} />
             : <NotSelected category={
-              categoryList.find(el => el.name === 'PCB')
+              categories.find(el => el.name === 'PCB')
             } />
           }
-          {prop.inventory.stabilizers
-            ? <Selected item={prop.inventory.stabilizers} />
+          {inventory.stabilizers.selected
+            ? <Selected item={inventory.stabilizers} />
             : <NotSelected category={
-              categoryList.find(el => el.name === 'Stabilizers')
+              categories.find(el => el.name === 'Stabilizers')
             } />
           }
-          {prop.inventory.switches
-            ? <Selected item={prop.inventory.switches} />
+          {inventory.switches.selected
+            ? <Selected item={inventory.switches} />
             : <NotSelected category={
-              categoryList.find(el => el.name === 'Switches')
+              categories.find(el => el.name === 'Switches')
             } />
           }
-          {prop.inventory.keycaps
-            ? <Selected item={prop.inventory.keycaps} />
+          {inventory.keycaps.selected
+            ? <Selected item={inventory.keycaps} />
             : <NotSelected category={
-              categoryList.find(el => el.name === 'Keycaps')
+              categories.find(el => el.name === 'Keycaps')
             } />
           }
         </tbody>

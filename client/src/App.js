@@ -7,11 +7,8 @@ import Build from './components/Build';
 import ItemDetail from './components/ItemDetail';
 import CategoryDetail from './components/CategoryDetail';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { useState, useEffect } from 'react';
 
 function App() {
-  const [ inventory, setInventory ] = useState({});
-
   return (
     <Router>
       <div className="App">
@@ -28,7 +25,7 @@ function App() {
           <Route 
             path="/build" 
             exact 
-            element={<Build inventory={inventory}/>} 
+            element={<Build />} 
           />
           <Route 
             path="/catalog/category/:id"

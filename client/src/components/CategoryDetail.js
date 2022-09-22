@@ -19,22 +19,38 @@ function CategoryDetail() {
   }, [])
 
   const handleClick = (e) => {
-    const obj = {
-      category: category[0].name,
-      name: e.target.dataset.name,
-      imgUrl: e.target.dataset.imgurl,
-      price: e.target.dataset.price
-    }; 
-    const arr = JSON.parse(localStorage.getItem('inventory'));
-
-    for (let i = 0; i < arr.length; i++) {
-      if (arr[i].category === category[0].name) {
-        arr.splice(i, 1);
+    if (localStorage.getItem('inventory') === null) {
+      const obj = {
+        case: {},
+        plate: {},
+        pcb: {},
+        stabilizers: {},
+        switches: {},
+        keycaps: {}
       }
+
+      localStorage.setItem('inventory', JSON.stringify(obj));
+    }
+    const obj = JSON.parse(localStorage.getItem('inventory'));
+    
+    switch (category[0].name) {
+      case 'Case': 
+        obj.case.name = e.target.dataset.name;
+        obj.case.imgUrl = e.target.dataset.imgurl;
+        obj.case.price = e.target.dataset.price;
+        obj.case.category = 'Case';
+        obj.case.selected = true;
+        break;
+      case 'Switches':
+        obj.switches.name = e.target.dataset.name;
+        obj.switches.imgUrl = e.target.dataset.imgurl;
+        obj.switches.price = e.target.dataset.price;
+        obj.switches.category = 'Switches';
+        obj.switches.selected = true;
+        break;
     }
 
-    arr.push(obj)
-    localStorage.setItem('inventory', JSON.stringify(arr));
+    localStorage.setItem('inventory', JSON.stringify(obj));
   }
 
   const caption = category.map((value) => (

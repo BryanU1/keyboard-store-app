@@ -5,10 +5,10 @@ function Shop() {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    const url = 'http://localhost:5000/api/items';
+    const url = 'http://localhost:5000/api/category/62f4181eb6fa5ce4097d1f21';
     fetch(url)
       .then((res) => res.json())
-      .then((json) => setItems(json))
+      .then((json) => setItems(json.items))
       .catch((err) => console.log(err));
     
   }, []);

@@ -7,7 +7,7 @@ import Build from './components/Build';
 import ItemDetail from './components/ItemDetail';
 import CategoryDetail from './components/CategoryDetail';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function App() {
   const [ inventory, setInventory ] = useState({});

@@ -1,8 +1,10 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import NotSelected from './NotSelected';
 import Selected from './Selected';
 
 function Build(prop) {
+  const [ category, setCategory] = useState([]);
+
   useEffect(() => {
     const url = 'http://localhost:5000/api/categories';
     
@@ -10,9 +12,14 @@ function Build(prop) {
       .then(res => res.json())
       .then(json => {
         localStorage.setItem('categories', JSON.stringify(json));
+        setCategory(json);
       })
       .catch((err) => console.log(err));
   }, []);
+
+  const addToCart = () => {
+    localStorage.setItem('inventory', JSON.stringify([]));
+  }
 
   const categories = localStorage.getItem('categories');
   const categoryList = JSON.parse(categories);
@@ -65,7 +72,7 @@ function Build(prop) {
           }
         </tbody>
       </table>
-      <button>Add To Cart</button>
+      <button onClick={addToCart}>Add To Cart</button>
     </div>
   );
 }

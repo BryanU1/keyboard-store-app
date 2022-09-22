@@ -3,8 +3,6 @@ import NotSelected from './NotSelected';
 import Selected from './Selected';
 
 function Build() {
-  const [ category, setCategory] = useState([])
-
   if (localStorage.getItem('inventory') === null) {
     const obj = {
       case: {},
@@ -18,24 +16,31 @@ function Build() {
     localStorage.setItem('inventory', JSON.stringify(obj));
   }
 
-  const url = 'http://localhost:5000/api/categories';
+  const inventoryObj = JSON.parse(localStorage.getItem('inventory'));
+  const [ inventory, setInventory ] = useState(inventoryObj);
+
+  useEffect(() => {
+    localStorage.setItem('inventory', JSON.stringify(inventory));
+  }, [inventory]);
     
   useEffect(() => {
+    const url = 'http://localhost:5000/api/categories';
+
     fetch(url)
       .then(res => res.json())
       .then(json => {
         localStorage.setItem('categories', JSON.stringify(json));
-        setCategory(json)
+        setInventory(JSON.parse(localStorage.getItem('inventory')));
       })
       .catch((err) => console.log(err));
   }, [])
 
   const addToCart = () => {
-    // localStorage.setItem('inventory', JSON.stringify({}));
+    console.log(inventory);
   }
 
   const categories = JSON.parse(localStorage.getItem('categories'));
-  const inventory = JSON.parse(localStorage.getItem('inventory'));
+
   return (
     <div>
       <table>
@@ -49,7 +54,7 @@ function Build() {
         </thead>
         <tbody>
           {inventory.case.selected
-            ? <Selected item={inventory.case} />
+            ? <Selected item={inventory.case} setInventory={setInventory}/>
             : <NotSelected category={
               categories.find(el => el.name === 'Case')
             } />

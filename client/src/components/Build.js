@@ -54,37 +54,55 @@ function Build() {
         </thead>
         <tbody>
           {inventory.case.selected
-            ? <Selected item={inventory.case} setInventory={setInventory}/>
+            ? <Selected 
+                item={inventory.case} 
+                setInventory={setInventory}
+              />
             : <NotSelected category={
               categories.find(el => el.name === 'Case')
             } />
           }
           {inventory.plate.selected
-            ? <Selected item={inventory.plate} />
+            ? <Selected 
+                item={inventory.plate} 
+                setInventory={setInventory}
+              />
             : <NotSelected category={
               categories.find(el => el.name === 'Plate')
             } />
           }
           {inventory.pcb.selected
-            ? <Selected item={inventory.pcb} />
+            ? <Selected 
+                item={inventory.pcb} 
+                setInventory={setInventory}
+              />
             : <NotSelected category={
               categories.find(el => el.name === 'PCB')
             } />
           }
           {inventory.stabilizers.selected
-            ? <Selected item={inventory.stabilizers} />
+            ? <Selected 
+                item={inventory.stabilizers} 
+                setInventory={setInventory}
+              />
             : <NotSelected category={
               categories.find(el => el.name === 'Stabilizers')
             } />
           }
           {inventory.switches.selected
-            ? <Selected item={inventory.switches} />
+            ? <Selected 
+                item={inventory.switches} 
+                setInventory={setInventory}
+              />
             : <NotSelected category={
               categories.find(el => el.name === 'Switches')
             } />
           }
           {inventory.keycaps.selected
-            ? <Selected item={inventory.keycaps} />
+            ? <Selected 
+                item={inventory.keycaps} 
+                setInventory={setInventory}
+              />
             : <NotSelected category={
               categories.find(el => el.name === 'Keycaps')
             } />

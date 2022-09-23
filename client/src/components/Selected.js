@@ -7,6 +7,21 @@ function Selected(prop) {
       case 'Case':
         inventory.case.selected = false;
         break;
+      case 'Plate':
+        inventory.plate.selected = false;
+        break;
+      case 'PCB':
+        inventory.pcb.selected = false;
+        break;
+      case 'Stabilizers':
+        inventory.stabilizers.selected = false;
+        break;
+      case 'Switches':
+        inventory.switches.selected = false;
+        break;
+      case 'Keycaps':
+        inventory.keycaps.selected = false;
+        break;
     }
 
     prop.setInventory(inventory)
@@ -23,8 +38,14 @@ function Selected(prop) {
       <td>
         <button 
           data-category={prop.item.category} 
-          onClick={removeItem}>
+          onClick={removeItem}
+        >
             remove
+        </button>
+      </td>
+      <td>
+        <button>
+          edit
         </button>
       </td>
     </tr>

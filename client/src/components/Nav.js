@@ -6,17 +6,20 @@ function Nav() {
       <Link to="/">
         <h1>Logo</h1>
       </Link>
-      <ul>
-        <Link to="/about">
-          <li>About</li>
-        </Link>
-        <Link to="/shop">
-          <li>Shop</li>
-        </Link>
-        <Link to="/build">
-          <li>Build</li>
-        </Link>
-      </ul>
+      <div>
+        <ul>
+          <Link to="/about">
+            <li>About</li>
+          </Link>
+          <Link to="/shop">
+            <li>Shop</li>
+          </Link>
+          <Link to="/build">
+            <li>Build</li>
+          </Link>
+        </ul>
+        <i className='fas fa-shopping-cart'></i>
+      </div>
     </nav>
   );
 }

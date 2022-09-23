@@ -24,22 +24,12 @@ function Build() {
   }, [inventory]);
     
   useEffect(() => {
-    const url = 'http://localhost:5000/api/categories';
-
-    fetch(url)
-      .then(res => res.json())
-      .then(json => {
-        localStorage.setItem('categories', JSON.stringify(json));
-        setInventory(JSON.parse(localStorage.getItem('inventory')));
-      })
-      .catch((err) => console.log(err));
+    setInventory(JSON.parse(localStorage.getItem('inventory')));
   }, [])
 
   const addToCart = () => {
     console.log(inventory);
   }
-
-  const categories = JSON.parse(localStorage.getItem('categories'));
 
   return (
     <div>
@@ -55,57 +45,123 @@ function Build() {
         <tbody>
           {inventory.case.selected
             ? <Selected 
+                category={
+                  {
+                    _id: "6304071f0f9c881261a89c32",
+                    name: 'Case'
+                  }
+                }
                 item={inventory.case} 
                 setInventory={setInventory}
               />
-            : <NotSelected category={
-              categories.find(el => el.name === 'Case')
-            } />
+            : <NotSelected 
+                category={
+                  {
+                    _id: "6304071f0f9c881261a89c32",
+                    name: 'Case'
+                  }
+                } 
+              />
           }
           {inventory.plate.selected
             ? <Selected 
+                category={
+                  {
+                    _id: "630407270f9c881261a89c36",
+                    name: 'Plate'
+                  }
+                } 
                 item={inventory.plate} 
                 setInventory={setInventory}
               />
-            : <NotSelected category={
-              categories.find(el => el.name === 'Plate')
-            } />
+            : <NotSelected 
+                category={
+                  {
+                    _id: "630407270f9c881261a89c36",
+                    name: 'Plate'
+                  }
+                } 
+              />
           }
           {inventory.pcb.selected
             ? <Selected 
+                category={
+                  {
+                    _id: '630407726dc6c612f78d829c',
+                    name: 'PCB'
+                  }
+                } 
                 item={inventory.pcb} 
                 setInventory={setInventory}
               />
-            : <NotSelected category={
-              categories.find(el => el.name === 'PCB')
-            } />
+            : <NotSelected 
+                category={
+                  {
+                    _id: '630407726dc6c612f78d829c',
+                    name: 'PCB'
+                  }
+                } 
+              />
           }
           {inventory.stabilizers.selected
             ? <Selected 
+                category={
+                  {
+                    _id: '6304077c6dc6c612f78d82a0',
+                    name: 'Stabilizers'
+                  }
+                } 
                 item={inventory.stabilizers} 
                 setInventory={setInventory}
               />
-            : <NotSelected category={
-              categories.find(el => el.name === 'Stabilizers')
-            } />
+            : <NotSelected 
+                category={
+                  {
+                    _id: '6304077c6dc6c612f78d82a0',
+                    name: 'Stabilizers'
+                  }
+                } 
+              />
           }
           {inventory.switches.selected
-            ? <Selected 
+            ? <Selected
+                category={
+                  {
+                    _id: '6304078f6dc6c612f78d82a4',
+                    name: 'Switches'
+                  }
+                } 
                 item={inventory.switches} 
                 setInventory={setInventory}
               />
-            : <NotSelected category={
-              categories.find(el => el.name === 'Switches')
-            } />
+            : <NotSelected 
+                category={
+                  {
+                    _id: '6304078f6dc6c612f78d82a4',
+                    name: 'Switches'
+                  }
+                } 
+              />
           }
           {inventory.keycaps.selected
-            ? <Selected 
+            ? <Selected
+                category={
+                  {
+                    _id: '6304079b6dc6c612f78d82a8',
+                    name: 'Keycaps'
+                  }
+                }  
                 item={inventory.keycaps} 
                 setInventory={setInventory}
               />
-            : <NotSelected category={
-              categories.find(el => el.name === 'Keycaps')
-            } />
+            : <NotSelected 
+                category={
+                  {
+                    _id: '6304079b6dc6c612f78d82a8',
+                    name: 'Keycaps'
+                  }
+                } 
+              />
           }
         </tbody>
       </table>

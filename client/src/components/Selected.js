@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 function Selected(prop) {
   const removeItem = (e) => {
     const inventory = JSON.parse(localStorage.getItem('inventory'));
@@ -26,6 +28,11 @@ function Selected(prop) {
 
     prop.setInventory(inventory)
   }
+
+  const handleClick = () => {
+    console.log(prop.category._id);
+  }
+
   return (
     <tr>
       <td>{prop.item.category}</td>
@@ -44,9 +51,9 @@ function Selected(prop) {
         </button>
       </td>
       <td>
-        <button>
-          edit
-        </button>
+        <Link to={`/catalog/category/${prop.category._id}`}>
+          <button onClick={handleClick}>edit</button>
+        </Link>
       </td>
     </tr>
   )

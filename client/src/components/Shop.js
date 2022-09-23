@@ -16,16 +16,19 @@ function Shop() {
   const itemList = items.map((item) => (
     <li key={item._id}>
       <Link to={`/shop/${item._id}`}>
-        <h1>
-          {item.name} - ${item.price}
-        </h1>
         <img src={item.imgUrl} alt="keyboard"></img>
+        <h1>
+          {item.name}
+        </h1>
+        <h2>
+          ${item.price}
+        </h2>
       </Link>
     </li>
   ));
 
   return (
-    <ul>
+    <ul className='products'>
       {itemList}
     </ul>
   );

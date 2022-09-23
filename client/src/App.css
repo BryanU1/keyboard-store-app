@@ -51,3 +51,21 @@ td img {
   width: 100px;
   height: auto;
 }
+
+.products {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  font-size: 10px;
+  padding: 30px;
+}
+
+.products img {
+  height: 200px;
+  border-radius: 10px;
+}
+
+.products a {
+  text-decoration: none;
+  color: black;
+}

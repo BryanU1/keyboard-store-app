@@ -7,8 +7,16 @@ import Build from './components/Build';
 import ItemDetail from './components/ItemDetail';
 import CategoryDetail from './components/CategoryDetail';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
 function App() {
+  const [ cart, setCart ] = useState(JSON.parse(localStorage.getItem('cart')) || []);
+
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cart));
+    console.log(cart);
+  }, [cart]);
+
   return (
     <Router>
       <div className="App">
@@ -21,11 +29,14 @@ function App() {
             exact 
             element={<Shop />} 
           />
-          <Route path="/shop/:id" element={<ItemDetail />} />
+          <Route 
+            path="/shop/:id" 
+            element={<ItemDetail setCart={setCart} cart={cart} />} 
+          />
           <Route 
             path="/build" 
             exact 
-            element={<Build />} 
+            element={<Build setCart={setCart} cart={cart} />} 
           />
           <Route 
             path="/catalog/category/:id"

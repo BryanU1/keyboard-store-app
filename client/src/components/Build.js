@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import NotSelected from './NotSelected';
 import Selected from './Selected';
 
-function Build() {
+function Build(prop) {
   if (localStorage.getItem('inventory') === null) {
     const obj = {
       case: {},
@@ -28,7 +28,26 @@ function Build() {
   }, [])
 
   const addToCart = () => {
-    console.log(inventory);
+    const arr = [];
+    for (const category in inventory) {
+      if (inventory[category].selected) {
+        const obj = {
+          name: inventory[category].name,
+          imgUrl: inventory[category].imgUrl,
+          price: inventory[category].price,
+        }
+        arr.push(obj);
+      }
+    }
+    prop.setCart(prop.cart.concat(arr));
+    setInventory({
+      case: {},
+      plate: {},
+      pcb: {},
+      stabilizers: {},
+      switches: {},
+      keycaps: {}
+    });
   }
 
   return (

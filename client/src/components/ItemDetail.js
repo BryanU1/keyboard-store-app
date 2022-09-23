@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
-function ItemDetail() {
+function ItemDetail(prop) {
   const params = useParams();
   const [data, setData] = useState({});
 
@@ -12,17 +12,29 @@ function ItemDetail() {
       .then((text) => {
         const obj = JSON.parse(text);
         setData(obj);
-        console.log(data);
       })
       .catch(err => console.log(err));
   }, [])
 
+  const handleClick = () => {
+    const obj = {
+      name: data.name,
+      imgUrl: data.imgUrl,
+      price: data.price
+    }
+    prop.setCart(prop.cart.concat(obj));
+  }
+
   return (
     <div>
-      <h1>{data.name}</h1>
-      <p>${data.price}</p>
-      <img src={data.imgUrl} alt='keyboard'></img>
+      <div>
+        <h1>{data.name}</h1>
+        <p>${data.price}</p>
+        <img src={data.imgUrl} alt='keyboard'></img>
+      </div>
+      <button onClick={handleClick}>Add To Cart</button>
     </div>
+    
   )
 }
 

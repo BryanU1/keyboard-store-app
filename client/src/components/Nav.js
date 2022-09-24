@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom';
 
-function Nav() {
+function Nav(prop) {
+  const openCart = () => {
+    prop.setDisplay(true);
+  }
   return (
     <nav className="nav-bar">
       <Link to="/">
@@ -18,7 +21,7 @@ function Nav() {
             <li>Build</li>
           </Link>
         </ul>
-        <i className='fas fa-shopping-cart'></i>
+        <i className='fas fa-shopping-cart' onClick={openCart}></i>
       </div>
     </nav>
   );

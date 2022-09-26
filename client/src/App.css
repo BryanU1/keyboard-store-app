@@ -92,6 +92,7 @@ td img {
   height: 100%;
   top: 0;
   right: 0;
+  overflow: auto;
 }
 
 .cart ul {

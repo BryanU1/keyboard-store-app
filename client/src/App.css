@@ -83,6 +83,9 @@ td img {
 }
 
 .cart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   position: fixed;
   background-color: white;
   width: 40%;
@@ -91,7 +94,38 @@ td img {
   right: 0;
 }
 
+.cart ul {
+  margin: 0;
+  padding: 0;
+}
+
+.cart button {
+  padding: 15px 10px;
+  margin: 30px;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(70, 70, 70);
+  color: white;
+}
+
+.cart button:hover {
+  cursor: pointer;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  height: 60px;
+  margin: 40px;
+}
+
+.cart-img {
+  height: 100%;
+  width: auto;
+}
+
 .close {
+  align-self: flex-start;
   position: relative;
   cursor: pointer;
   top: 10px;

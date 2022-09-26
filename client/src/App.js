@@ -46,7 +46,12 @@ function App() {
           />
         </Routes>
 
-        <Cart display={display} setDisplay={setDisplay} />
+        <Cart 
+          display={display}  
+          setDisplay={setDisplay}
+          cart={cart}
+          setCart={setCart}
+        />
       </div>
     </Router>
   );

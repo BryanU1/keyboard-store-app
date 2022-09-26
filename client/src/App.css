@@ -85,7 +85,7 @@ td img {
 .cart {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   position: fixed;
   background-color: white;
   width: 40%;
@@ -100,6 +100,7 @@ td img {
 }
 
 .cart button {
+  align-self: center;
   padding: 15px 10px;
   margin: 30px;
   border: none;
@@ -110,6 +111,10 @@ td img {
 
 .cart button:hover {
   cursor: pointer;
+}
+
+.item-list {
+  width: 100%;
 }
 
 .cart-item {
@@ -125,7 +130,6 @@ td img {
 }
 
 .close {
-  align-self: flex-start;
   position: relative;
   cursor: pointer;
   top: 10px;

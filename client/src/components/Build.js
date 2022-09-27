@@ -35,6 +35,7 @@ function Build(prop) {
           name: inventory[category].name,
           imgUrl: inventory[category].imgUrl,
           price: inventory[category].price,
+          quantity: 1
         }
         arr.push(obj);
       }

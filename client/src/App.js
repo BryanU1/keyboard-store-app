@@ -13,11 +13,25 @@ import { useState, useEffect } from 'react';
 function App() {
   const [ cart, setCart ] = useState(JSON.parse(localStorage.getItem('cart')) || []);
   const [ display, setDisplay ] = useState(false);
+  const [ totalPrice, setTotalPrice ] = useState(JSON.parse(localStorage.getItem('total price')) || 0);
 
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cart));
     console.log(cart);
+
+    let value = 0;
+    for (let i = 0; i < cart.length; i++) {
+      value += cart[i].price * cart[i].quantity;
+    }
+
+    console.log('total price: ' + value);
+
+    setTotalPrice(value);
   }, [cart]);
+
+  useEffect(() => {
+    localStorage.setItem('total price', JSON.stringify(totalPrice));
+  }, [totalPrice]);
 
   return (
     <Router>
@@ -51,6 +65,7 @@ function App() {
           setDisplay={setDisplay}
           cart={cart}
           setCart={setCart}
+          totalPrice={totalPrice}
         />
       </div>
     </Router>

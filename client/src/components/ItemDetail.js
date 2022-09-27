@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 function ItemDetail(prop) {
   const params = useParams();
   const [data, setData] = useState({});
+  const [ quantity, setQuantity ] = useState(0);
 
   useEffect(() => {
     const url = `http://localhost:5000/api/item/${params.id}`;
@@ -20,9 +21,14 @@ function ItemDetail(prop) {
     const obj = {
       name: data.name,
       imgUrl: data.imgUrl,
-      price: data.price
+      price: data.price,
+      quantity: quantity
     }
     prop.setCart(prop.cart.concat(obj));
+  }
+
+  const handleChange = (e) => {
+    setQuantity(Number(e.target.value))
   }
 
   return (
@@ -30,6 +36,15 @@ function ItemDetail(prop) {
       <div>
         <h1>{data.name}</h1>
         <p>${data.price}</p>
+        <label htmlFor='quntity'>Quantity</label>
+        <input 
+          type='number' 
+          min='0' 
+          max='99' 
+          id='quantity'
+          onChange={handleChange}
+        >
+        </input>
         <img src={data.imgUrl} alt='keyboard'></img>
       </div>
       <button onClick={handleClick}>Add To Cart</button>

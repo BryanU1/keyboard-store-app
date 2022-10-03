@@ -1,20 +1,12 @@
-import { useState, useEffect } from 'react';
-
 function Home() {
-  const [data, setData] = useState('');
-
-  useEffect(() => {
-    const url = 'http://localhost:5000/api';
-    fetch(url)
-      .then((res) => res.text())
-      .then((text) => setData(text))
-      .catch((err) => console.log(err));
-  });
-
   return (
-    <div>
-      <p>Home page</p>
-      <p>{data}</p>
+    <div className='home-div'>
+      <div>  
+        <h1>Keychron K2</h1>
+        <button>Shop Now</button>
+      </div>
+      <img src={'https://images.squarespace-cdn.com/content/v1/5f48959a7b41397a9d9c497a/1618296609717-D7UVS0U5XCA1G5YY48DB/IMG_3110.jpg'}>
+      </img>
     </div>
   );
 }

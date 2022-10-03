@@ -35,7 +35,7 @@ function App() {
 
   return (
     <Router>
-      <div className="App">
+      <div className="App flex-container">
         <Nav setDisplay={setDisplay}/>
         <Routes>
           <Route path="/" exact element={<Home />} />

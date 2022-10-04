@@ -14,10 +14,13 @@
 }
 .nav-bar ul {
   padding: 0;
-  width: 200px;
+  margin: 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+.nav-bar ul li {
+  margin: 10px;
 }
 .nav-bar a {
   text-decoration: none;
@@ -25,8 +28,7 @@
 }
 .nav-bar div {
   display: flex;
-  width: 350px;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
 }
 
@@ -95,6 +97,7 @@ td img {
   text-align: center;
   font-size: 10px;
   padding: 30px;
+  flex-wrap: wrap;
 }
 .products img {
   height: 200px;

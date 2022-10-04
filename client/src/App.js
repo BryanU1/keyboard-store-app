@@ -1,7 +1,6 @@
 import './App.css';
 import Nav from './components/Nav';
 import Home from './components/Home';
-import About from './components/About';
 import Shop from './components/Shop';
 import Build from './components/Build';
 import ItemDetail from './components/ItemDetail';
@@ -39,7 +38,6 @@ function App() {
         <Nav setDisplay={setDisplay}/>
         <Routes>
           <Route path="/" exact element={<Home />} />
-          <Route path="/about" element={<About />} />
           <Route 
             path="/shop"
             exact 

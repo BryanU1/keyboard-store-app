@@ -6,14 +6,11 @@ function Nav(prop) {
   }
   return (
     <nav className="nav-bar">
-      <Link to="/">
-        <h1>Logo</h1>
-      </Link>
-      <div>
+      <div>  
+        <Link to="/">
+          <h1>Logo</h1>
+        </Link>
         <ul>
-          <Link to="/about">
-            <li>About</li>
-          </Link>
           <Link to="/shop">
             <li>Shop</li>
           </Link>
@@ -21,8 +18,8 @@ function Nav(prop) {
             <li>Build</li>
           </Link>
         </ul>
-        <i className='fas fa-shopping-cart' onClick={openCart}></i>
       </div>
+      <i className='fas fa-shopping-cart' onClick={openCart}></i>
     </nav>
   );
 }

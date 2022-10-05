@@ -1,5 +1,6 @@
 $font-theme: black;
 $selected: rgb(179, 179, 179);
+$hover: rgb(255, 208, 122);
 
 #root {
   height: 100%;
@@ -85,7 +86,7 @@ $selected: rgb(179, 179, 179);
     background-color: rgb(253, 253, 253);
 
     &:hover {
-      background-color: $selected;
+      background-color: $hover;
       cursor: pointer;
     }
   }
@@ -110,13 +111,13 @@ ul li {
     padding: 15px 30px;
 
     &:hover {
-      background-color: rgb(255, 208, 122);
+      background-color: $hover;
     }
   }
 }
 
 .header {
-  margin: 40px 60px 0;
+  margin: 40px 45px 0;
   font-size: 40px;
   font-weight: 100;
 }

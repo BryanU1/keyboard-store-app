@@ -100,9 +100,10 @@ ul li {
 }
 
 .header {
-  margin: 40px 45px 0;
+  margin: 40px 0 0;
   font-size: 40px;
   font-weight: 100;
+  text-align: center;
 }
 
 table {
@@ -128,7 +129,8 @@ td img {
   display: flex;
   text-align: center;
   font-size: 10px;
-  padding: 30px;
+  padding: 15px 30px;
+  max-width: 1000px;
   flex-wrap: wrap;
 }
 .items-container img {

@@ -28,7 +28,7 @@ function Keycaps() {
   ));
 
   return (
-    <div className='flex-container-row'>
+    <div className='flex-container-row center'>
       <section>
         <ul className='side-nav'>
           <Link to='/shop/keyboard'>

@@ -38,6 +38,10 @@
   flex-direction: column;
 }
 
+.flex-container-row {
+  display: flex;
+}
+
 .home-div {
   flex: 1;
   overflow: hidden;
@@ -74,6 +78,27 @@ ul li {
   list-style: none;
 }
 
+.side-nav {
+  margin: 45px 30px;
+  padding: 0;
+}
+.side-nav a {
+  text-decoration: none;
+  color: black;
+}
+.side-nav li {
+  padding: 10px 20px;
+}
+.side-nav li:hover {
+  background-color: rgb(179, 179, 179);
+}
+
+.header {
+  margin: 40px 0 0 60px;
+  font-size: 40px;
+  font-weight: 100;
+}
+
 table {
   width: 100%;
 }
@@ -92,20 +117,30 @@ td img {
   height: auto;
 }
 
-.products {
+.items-container {
+  margin: 0;
   display: flex;
   text-align: center;
   font-size: 10px;
   padding: 30px;
   flex-wrap: wrap;
 }
-.products img {
+.items-container img {
   height: 200px;
+  width: 200px;
   border-radius: 10px;
+  object-fit: contain;
 }
-.products a {
+.items-container a {
   text-decoration: none;
   color: black;
+}
+.items-container .item {
+  margin: 15px;
+}
+.items-container .item h1 {
+  font-size: 20px;
+  width: 200px;
 }
 
 .modal {
@@ -186,6 +221,10 @@ input[type=number] {
 
 .hidden {
   display: none;
+}
+
+.selected {
+  background-color: rgb(179, 179, 179);
 }
 
 /*# sourceMappingURL=App.css.map */

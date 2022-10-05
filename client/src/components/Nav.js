@@ -11,7 +11,7 @@ function Nav(prop) {
           <h1>Logo</h1>
         </Link>
         <ul>
-          <Link to="/shop">
+          <Link to="/shop/keyboard">
             <li>Shop</li>
           </Link>
           <Link to="/build">

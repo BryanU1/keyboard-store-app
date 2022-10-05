@@ -1,7 +1,12 @@
 import './App.css';
 import Nav from './components/Nav';
 import Home from './components/Home';
-import Shop from './components/Shop';
+import Keyboard from './components/Keyboard';
+import Case from './components/Case';
+import PCB from './components/PCB';
+import Stabilizers from './components/Stabilizers';
+import Switches from './components/Switches';
+import Keycaps from './components/Keycaps';
 import Build from './components/Build';
 import ItemDetail from './components/ItemDetail';
 import CategoryDetail from './components/CategoryDetail';
@@ -39,9 +44,34 @@ function App() {
         <Routes>
           <Route path="/" exact element={<Home />} />
           <Route 
-            path="/shop"
+            path="/shop/keyboard"
             exact 
-            element={<Shop />} 
+            element={<Keyboard />} 
+          />
+          <Route 
+            path="/shop/case"  
+            exact
+            element={<Case />}
+          />
+          <Route 
+            path="/shop/pcb"  
+            exact
+            element={<PCB />}
+          />
+          <Route 
+            path="/shop/Stabilizers"  
+            exact
+            element={<Stabilizers />}
+          />
+          <Route 
+            path="/shop/Switches"  
+            exact
+            element={<Switches />}
+          />
+          <Route 
+            path="/shop/Keycaps"  
+            exact
+            element={<Keycaps />}
           />
           <Route 
             path="/shop/:id" 

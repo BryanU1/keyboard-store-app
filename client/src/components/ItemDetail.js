@@ -32,22 +32,23 @@ function ItemDetail(prop) {
   }
 
   return (
-    <div>
+    <div className='flex-container-row'>
+      <img src={data.imgUrl} alt='keyboard'></img>
       <div>
-        <h1>{data.name}</h1>
+        <h1 className='header'>{data.name}</h1>
         <p>${data.price}</p>
         <label htmlFor='quntity'>Quantity</label>
         <input 
           type='number' 
-          min='0' 
+          min='1' 
           max='99' 
           id='quantity'
+          defaultValue='1'
           onChange={handleChange}
         >
         </input>
-        <img src={data.imgUrl} alt='keyboard'></img>
+        <button onClick={handleClick}>Add To Cart</button>
       </div>
-      <button onClick={handleClick}>Add To Cart</button>
     </div>
     
   )

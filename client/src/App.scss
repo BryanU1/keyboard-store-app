@@ -1,4 +1,5 @@
 $font-theme: black;
+$selected: rgb(179, 179, 179);
 
 #root {
   height: 100%;
@@ -44,6 +45,10 @@ $font-theme: black;
   flex-direction: column;
 }
 
+.flex-container-row {
+  display: flex;
+}
+
 .home-div {
   flex: 1;
   overflow: hidden;
@@ -76,7 +81,7 @@ $font-theme: black;
     background-color: rgb(253, 253, 253);
 
     &:hover {
-      background-color: rgb(179, 179, 179);
+      background-color: $selected;
       cursor: pointer;
     }
   }
@@ -84,6 +89,30 @@ $font-theme: black;
 
 ul li {
   list-style: none;
+}
+
+.side-nav {
+  margin: 45px 30px;
+  padding: 0;
+
+  a {
+    text-decoration: none;
+    color: black;
+  }
+
+  li {
+    padding: 10px 20px;
+
+    &:hover {
+      background-color: rgb(179, 179, 179);
+    }
+  }
+}
+
+.header {
+  margin: 40px 0 0 60px;
+  font-size: 40px;
+  font-weight: 100;
 }
 
 table {
@@ -105,7 +134,8 @@ td img {
   height: auto;
 }
 
-.products {
+.items-container {
+  margin: 0;
   display: flex;
   text-align: center;
   font-size: 10px;
@@ -114,12 +144,23 @@ td img {
 
   img {
     height: 200px;
+    width: 200px;
     border-radius: 10px;
+    object-fit: contain;
   }
 
   a {
     text-decoration: none;
     color: black;
+  }
+
+  .item {
+    margin: 15px;
+
+    h1 {
+      font-size: 20px;
+      width: 200px
+    }
   }
 }
 
@@ -203,4 +244,8 @@ input[type='number'] {
 
 .hidden {
   display: none;
+}
+
+.selected {
+  background-color: $selected;
 }

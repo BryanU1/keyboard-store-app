@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 function ItemDetail(prop) {
   const params = useParams();
   const [data, setData] = useState({});
-  const [ quantity, setQuantity ] = useState(0);
+  const [ quantity, setQuantity ] = useState(1);
 
   useEffect(() => {
     const url = `http://localhost:5000/api/item/${params.id}`;

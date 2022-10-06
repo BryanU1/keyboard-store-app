@@ -19,7 +19,10 @@ function Nav(prop) {
           </Link>
         </ul>
       </div>
-      <i className='fas fa-shopping-cart' onClick={openCart}></i>
+      <div className='nav-cart'>
+        <div id='cart-quantity'>{prop.totalCount}</div>
+        <i className='fas fa-shopping-cart' onClick={openCart}></i>
+      </div>
     </nav>
   );
 }

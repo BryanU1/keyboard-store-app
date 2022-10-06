@@ -1,3 +1,5 @@
+import uniqid from 'uniqid';
+
 function Cart(prop) {
   const closeCart = () => {
     prop.setDisplay(false);
@@ -22,7 +24,7 @@ function Cart(prop) {
   }
 
   const cartList = prop.cart.map((item) => 
-    <li className='cart-item'>
+    <li key={uniqid()} className='cart-item'>
       <img src={item.imgUrl} className='cart-img'></img>
       <div className='cart-detail'>
         <h1>{item.name}</h1>

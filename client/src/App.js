@@ -18,29 +18,37 @@ function App() {
   const [ cart, setCart ] = useState(JSON.parse(localStorage.getItem('cart')) || []);
   const [ display, setDisplay ] = useState(false);
   const [ totalPrice, setTotalPrice ] = useState(JSON.parse(localStorage.getItem('total price')) || 0);
+  const [ totalCount, setTotalCount ] = useState(JSON.parse(localStorage.getItem('total count')) || 0);
 
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cart));
-    console.log(cart);
 
+    let count = 0;
     let value = 0;
     for (let i = 0; i < cart.length; i++) {
       value += cart[i].price * cart[i].quantity;
+      count += cart[i].quantity;
     }
 
-    console.log('total price: ' + value);
-
     setTotalPrice(parseFloat(value).toFixed(2));
+    setTotalCount(count);
   }, [cart]);
 
   useEffect(() => {
     localStorage.setItem('total price', JSON.stringify(totalPrice));
   }, [totalPrice]);
 
+  useEffect(() => {
+    localStorage.setItem('total count', JSON.stringify(totalCount));
+  }, [totalCount]);
+
   return (
     <Router>
       <div className="App flex-container">
-        <Nav setDisplay={setDisplay}/>
+        <Nav 
+          setDisplay={setDisplay}
+          totalCount={totalCount}
+        />
         <Routes>
           <Route path="/" exact element={<Home />} />
           <Route 

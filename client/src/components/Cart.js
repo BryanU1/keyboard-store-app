@@ -26,7 +26,7 @@ function Cart(prop) {
       <img src={item.imgUrl} className='cart-img'></img>
       <p>{item.name}</p>
       <p>${item.price}</p>
-      <label htmlFor='quantity'>Quantity</label>
+      <label htmlFor='quantity'>Quantity:</label>
       <input type='number' defaultValue={item.quantity} min='1' max='100' id='quantity' onChange={handleChange} data-name={item.name}></input>
       <button className='remove-btn' onClick={removeItem} data-name={item.name}>&times;</button>
     </li>

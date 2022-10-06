@@ -81,8 +81,8 @@ function CategoryDetail() {
     localStorage.setItem('inventory', JSON.stringify(obj));
   }
 
-  const caption = category.map((value) => (
-    <caption key={value._id}>{value.name}</caption>
+  const heading = category.map((value) => (
+    <h1 key={value._id} className='header-build'>{value.name}</h1>
   ));
 
   const itemsList = items.map(item => (
@@ -97,6 +97,7 @@ function CategoryDetail() {
       <td>
         <Link to='/build'>
           <button 
+            className='btn-add'
             onClick={handleClick}
             data-name={item.name}
             data-imgurl={item.imgUrl}
@@ -110,9 +111,9 @@ function CategoryDetail() {
   ));
 
   return (
-    <div>
-      <table>
-        {caption}
+    <div className='table'>
+      {heading}
+      <table className='table-detail'>
         <thead>
           <tr>
             <th>Image</th>

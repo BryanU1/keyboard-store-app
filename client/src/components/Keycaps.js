@@ -52,7 +52,7 @@ function Keycaps() {
         </ul>
       </section>
       <div className='main-content'>
-        <h1 className='header'>Keycaps</h1>
+        <h1 className='header-shop'>Keycaps</h1>
         <ul className='items-container'>
           {itemList}  
         </ul>

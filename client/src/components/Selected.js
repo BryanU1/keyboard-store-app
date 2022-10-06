@@ -43,17 +43,21 @@ function Selected(prop) {
       <td>{prop.item.name}</td>
       <td>${prop.item.price}</td>
       <td>
-        <button 
+        <Link to={`/catalog/category/${prop.category._id}`}>
+          <i
+            className='fas fa-edit'
+            onClick={handleClick}
+          >
+          </i>
+        </Link>
+      </td>
+      <td>
+        <i
+          className='fas fa-trash' 
           data-category={prop.item.category} 
           onClick={removeItem}
         >
-            remove
-        </button>
-      </td>
-      <td>
-        <Link to={`/catalog/category/${prop.category._id}`}>
-          <button onClick={handleClick}>edit</button>
-        </Link>
+        </i>
       </td>
     </tr>
   )

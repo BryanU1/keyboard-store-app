@@ -52,8 +52,9 @@ function Build(prop) {
   }
 
   return (
-    <div>
-      <table>
+    <div className='table'>
+      <h1 className='header-build'>Keyboard Parts</h1>
+      <table className='table-build'>
         <thead>
           <tr>
             <th>Categories</th>
@@ -185,7 +186,7 @@ function Build(prop) {
           }
         </tbody>
       </table>
-      <button onClick={addToCart}>Add To Cart</button>
+      <button onClick={addToCart} className='btn-cart'>Add To Cart</button>
     </div>
   );
 }

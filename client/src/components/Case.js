@@ -52,7 +52,7 @@ function Case() {
         </ul>
       </section>
       <div className='main-content'>
-        <h1 className='header'>Case</h1>
+        <h1 className='header-shop'>Case</h1>
         <ul className='items-container'>
           {itemList}  
         </ul>

@@ -52,7 +52,7 @@ function Keyboard() {
         </ul>
       </section>
       <div className='main-content'>
-        <h1 className='header'>Assembled Keyboards</h1>
+        <h1 className='header-shop'>Assembled Keyboards</h1>
         <ul className='items-container'>
           {itemList}  
         </ul>

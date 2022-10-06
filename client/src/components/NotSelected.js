@@ -6,7 +6,7 @@ function NotSelected(prop) {
       <td>{prop.category.name}</td>
       <td>
         <Link to={`/catalog/category/${prop.category._id}`} >
-          <button>Add {prop.category.name}</button>
+          <button className='btn-add'>Add</button>
         </Link>
       </td>
     </tr>

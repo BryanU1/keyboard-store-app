@@ -21,7 +21,7 @@ function Keycaps() {
           {item.name}
         </h1>
         <h2>
-          ${item.price}
+          ${parseFloat(item.price).toFixed(2)}
         </h2>
       </Link>
     </li>

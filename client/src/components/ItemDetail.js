@@ -36,7 +36,7 @@ function ItemDetail(prop) {
       <img src={data.imgUrl} alt='keyboard' className='img-detail'></img>
       <div>
         <h1 className='header-detail'>{data.name}</h1>
-        <p>${data.price}</p>
+        <p>${parseFloat(data.price).toFixed(2)}</p>
         <form>
           <label htmlFor='quantity'>Quantity:</label>
           <input 

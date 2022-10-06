@@ -30,7 +30,7 @@ function App() {
 
     console.log('total price: ' + value);
 
-    setTotalPrice(value);
+    setTotalPrice(parseFloat(value).toFixed(2));
   }, [cart]);
 
   useEffect(() => {

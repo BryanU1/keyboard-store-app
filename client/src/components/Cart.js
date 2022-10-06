@@ -24,11 +24,15 @@ function Cart(prop) {
   const cartList = prop.cart.map((item) => 
     <li className='cart-item'>
       <img src={item.imgUrl} className='cart-img'></img>
-      <p>{item.name}</p>
-      <p>${item.price}</p>
-      <label htmlFor='quantity'>Quantity:</label>
-      <input type='number' defaultValue={item.quantity} min='1' max='100' id='quantity' onChange={handleChange} data-name={item.name}></input>
-      <button className='remove-btn' onClick={removeItem} data-name={item.name}>&times;</button>
+      <div className='cart-detail'>
+        <h1>{item.name}</h1>
+        <p>${item.price}</p>
+        <div>
+          <label htmlFor='quantity'>Quantity:</label>
+          <input type='number' defaultValue={item.quantity} min='1' max='100' id='quantity' onChange={handleChange} data-name={item.name}></input>
+        </div>
+      </div>
+      <i className='fas fa-trash' onClick={removeItem} data-name={item.name}></i>
     </li>
   )
 
@@ -45,8 +49,8 @@ function Cart(prop) {
         <ul className='item-list'>
           {cartList}
         </ul>
+        <p className='cart-price'>Total Price: ${prop.totalPrice}</p>
         <button className='checkout-btn' onClick={handleCheckout}>Proceed to checkout</button>
-        <p>Total Price: {prop.totalPrice}</p>
       </div>
     </div>
   )

@@ -286,7 +286,6 @@ td img {
 .cart {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   position: fixed;
   background-color: white;
   width: 40%;
@@ -301,13 +300,11 @@ td img {
 }
 
 .checkout-btn {
-  align-self: center;
   padding: 15px 10px;
   margin: 30px;
   border: none;
-  border-radius: 5px;
-  background-color: rgb(70, 70, 70);
-  color: white;
+  background-color: rgb(255, 208, 122);
+  color: black;
 }
 .checkout-btn:hover {
   cursor: pointer;
@@ -326,14 +323,28 @@ input[type=number] {
 
 .cart-item {
   display: flex;
-  justify-content: space-between;
-  height: 60px;
-  margin: 40px;
+  align-items: center;
+  height: 150px;
+  margin: 30px;
+}
+
+.cart-detail p {
+  margin: 0;
+}
+.cart-detail h1 {
+  margin: 0;
+  font-size: 18px;
 }
 
 .cart-img {
-  height: 100%;
-  width: auto;
+  height: 100px;
+  width: 100px;
+  object-fit: contain;
+  margin-right: 20px;
+}
+
+.cart-price {
+  margin: 0px 30px;
 }
 
 .close {

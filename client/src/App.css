@@ -55,8 +55,6 @@
 .container-detail div {
   display: flex;
   flex-direction: column;
-  position: relative;
-  bottom: 100px;
 }
 .container-detail button {
   border: none;
@@ -66,8 +64,7 @@
   font-weight: bold;
   height: 70px;
   width: 200px;
-  position: relative;
-  top: 100px;
+  margin-top: 25px;
 }
 .container-detail button:hover {
   cursor: pointer;
@@ -83,7 +80,7 @@
 
 .img-detail {
   height: 500px;
-  margin-right: 100px;
+  margin: 0 100px;
 }
 
 .center {

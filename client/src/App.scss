@@ -64,8 +64,6 @@ $hover: rgb(255, 208, 122);
   div {
     display: flex;
     flex-direction: column;
-    position: relative;
-    bottom: 100px;
   }
 
   button {
@@ -76,8 +74,7 @@ $hover: rgb(255, 208, 122);
     font-weight: bold;
     height: 70px;
     width: 200px;
-    position: relative;
-    top: 100px;
+    margin-top: 25px;
 
     &:hover {
       cursor: pointer;
@@ -95,7 +92,7 @@ $hover: rgb(255, 208, 122);
 
 .img-detail {
   height: 500px;
-  margin-right: 100px;
+  margin: 0 100px;
 }
 
 .center {

@@ -80,7 +80,7 @@
 
 .img-detail {
   height: 500px;
-  margin: 0 100px;
+  margin: 10px 100px;
 }
 
 .center {
@@ -283,7 +283,7 @@ td img {
   flex-direction: column;
   position: fixed;
   background-color: white;
-  width: 40%;
+  width: 500px;
   height: 100%;
   top: 0;
   right: 0;
@@ -384,7 +384,7 @@ input[type=number] {
   background-color: rgb(179, 179, 179);
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 600px) {
   .cart {
     width: 100%;
   }

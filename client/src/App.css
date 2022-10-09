@@ -6,10 +6,13 @@
   display: flex;
   justify-content: space-between;
   padding: 0 100px;
-  min-height: 10vh;
+  height: 10vh;
   color: black;
   font-size: 16px;
   box-shadow: 0 1px 5px rgb(141, 141, 141);
+}
+.nav-bar img {
+  height: 50px;
 }
 .nav-bar ul {
   padding: 0;
@@ -19,7 +22,14 @@
   align-items: center;
 }
 .nav-bar ul li {
-  margin: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 30px;
+  height: 10vh;
+}
+.nav-bar ul li:hover {
+  background-color: rgb(255, 208, 122);
 }
 .nav-bar a {
   text-decoration: none;

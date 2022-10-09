@@ -8,7 +8,7 @@ function Nav(prop) {
     <nav className="nav-bar">
       <div>  
         <Link to="/">
-          <h1>Logo</h1>
+          <img src={require('../images/favicon.ico')}></img>
         </Link>
         <ul>
           <Link to="/shop/keyboard">

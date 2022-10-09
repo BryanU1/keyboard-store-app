@@ -10,10 +10,14 @@ $hover: rgb(255, 208, 122);
   display: flex;
   justify-content: space-between;
   padding: 0 100px;
-  min-height: 10vh;
+  height: 10vh;
   color: $font-theme;
   font-size: 16px;
   box-shadow: 0 1px 5px rgb(141, 141, 141);
+
+  img {
+    height: 50px;
+  }
 
   ul {
     padding: 0;
@@ -23,7 +27,15 @@ $hover: rgb(255, 208, 122);
     align-items: center;
 
     li {
-      margin: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0 30px;
+      height: 10vh;
+
+      &:hover {
+        background-color: $hover;
+      }
     }
   }
 

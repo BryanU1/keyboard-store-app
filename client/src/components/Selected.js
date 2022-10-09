@@ -41,7 +41,7 @@ function Selected(prop) {
         </img>
       </td>
       <td>{prop.item.name}</td>
-      <td>${prop.item.price}</td>
+      <td>${parseFloat(prop.item.price).toFixed(2)}</td>
       <td>
         <Link to={`/catalog/category/${prop.category._id}`}>
           <i

@@ -102,6 +102,7 @@ function App() {
           cart={cart}
           setCart={setCart}
           totalPrice={totalPrice}
+          totalCount={totalCount}
         />
       </div>
     </Router>

@@ -42,12 +42,18 @@ function Cart(prop) {
     prop.setCart([])
   }
 
+  let emptyCart;
+  if (!prop.totalCount) {
+    emptyCart = <h1 className='cart-header'>Your Shopping Cart Is Empty</h1>
+  }
+
   return (
     <div className={prop.display ? 'modal' : 'modal hidden'}>
       <div className='cart'>
         <span className='close' onClick={closeCart}>
           &times;
         </span>
+        {emptyCart}
         <ul className='item-list'>
           {cartList}
         </ul>

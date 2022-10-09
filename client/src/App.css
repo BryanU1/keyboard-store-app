@@ -297,6 +297,12 @@ td img {
   padding: 0;
 }
 
+.cart-header {
+  font-size: 50px;
+  font-weight: 500;
+  margin: 30px;
+}
+
 .checkout-btn {
   padding: 15px 10px;
   margin: 30px;
@@ -326,17 +332,20 @@ input[type=number] {
   margin: 30px;
 }
 
+.cart-detail {
+  flex: 1;
+}
 .cart-detail p {
   margin: 0;
 }
 .cart-detail h1 {
-  margin: 0;
+  margin: 0 0 10px;
   font-size: 18px;
 }
 
 .cart-img {
-  height: 100px;
-  width: 100px;
+  height: 150px;
+  width: 150px;
   object-fit: contain;
   margin-right: 20px;
 }
@@ -349,7 +358,7 @@ input[type=number] {
   position: relative;
   cursor: pointer;
   top: 10px;
-  left: 10px;
+  left: 30px;
   font-size: 25px;
 }
 

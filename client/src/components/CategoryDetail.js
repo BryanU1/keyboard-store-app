@@ -91,9 +91,7 @@ function CategoryDetail() {
         <img src={item.imgUrl} alt='Keyboard Case'></img>
       </td>
       <td>{item.name}</td>
-      {item.price % 1 == 0
-        ? <td>${item.price}.00</td>
-        : <td>${item.price}</td>}
+      <td>${parseFloat(item.price).toFixed(2)}</td>
       <td>
         <Link to='/build'>
           <button 

@@ -414,3 +414,9 @@ input[type='number'] {
 .selected {
   background-color: $selected;
 }
+
+@media screen and (max-width: 1000px) {
+  .cart {
+    width: 100%;
+  }
+}

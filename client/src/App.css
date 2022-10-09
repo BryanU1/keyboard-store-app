@@ -384,4 +384,10 @@ input[type=number] {
   background-color: rgb(179, 179, 179);
 }
 
+@media screen and (max-width: 1000px) {
+  .cart {
+    width: 100%;
+  }
+}
+
 /*# sourceMappingURL=App.css.map */

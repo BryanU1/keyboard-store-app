@@ -292,9 +292,9 @@ td img {
     object-fit: contain;
 
     &:hover {
-      animation-duration: 0.25s;
+      animation-duration: 0.55s;
       animation-name: enlarge;
-      animation-timing-function: ease-out;
+      animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
       animation-fill-mode: forwards;
     }
   }
@@ -341,11 +341,26 @@ td img {
   height: 100%;
   top: 0;
   right: 0;
-  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+  animation-duration: 0.6s;
+  animation-name: slidein;
+  animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
 
   ul {
     margin: 0;
     padding: 0;
+  }
+}
+
+@keyframes slidein {
+
+  from {
+    right: -500px;
+  }
+
+  to {
+    right: 0;
   }
 }
 

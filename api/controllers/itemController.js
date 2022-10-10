@@ -64,7 +64,7 @@ exports.item_create_post = [
     next();
   },
 
-  body('name', 'Item name required').trim().isLength({min:1}).escape(),
+  body('name', 'Item name required').trim().isLength({min:1}),
   body('imgUrl').trim(),
   body('price').isFloat().escape().withMessage('Price must be a number'),
   body('category.*').escape(),
@@ -171,7 +171,7 @@ exports.item_update_post = [
     next();
   },
 
-  body('name', 'Item name required').trim().isLength({min:1}).escape(),
+  body('name', 'Item name required').trim().isLength({min:1}),
   body('imgUrl').trim(),
   body('price').isFloat().escape().withMessage('Price must be a number'),
   body('category.*').escape(),

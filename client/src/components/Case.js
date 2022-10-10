@@ -37,6 +37,9 @@ function Case() {
           <Link to='/shop/case'>
             <li className='selected'>Case</li>
           </Link>
+          <Link to='/shop/plate'>
+            <li>Plate</li>
+          </Link>
           <Link to='/shop/pcb'>
             <li>PCB</li>
           </Link>

@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'
 
-function Switches() {
+function Plate() {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    const url = 'http://localhost:5000/api/category/6304078f6dc6c612f78d82a4';
+    const url = `http://localhost:5000/api/category/630407270f9c881261a89c36`;
     fetch(url)
       .then((res) => res.json())
       .then((json) => setItems(json.items))
@@ -16,7 +16,7 @@ function Switches() {
   const itemList = items.map((item) => (
     <li key={item._id} className='item'>
       <Link to={`/shop/${item._id}`}>
-        <img src={item.imgUrl} alt="Switches"></img>
+        <img src={item.imgUrl} alt="Plate"></img>
         <h1>
           {item.name}
         </h1>
@@ -38,7 +38,7 @@ function Switches() {
             <li>Case</li>
           </Link>
           <Link to='/shop/plate'>
-            <li>Plate</li>
+            <li className='selected'>Plate</li>
           </Link>
           <Link to='/shop/pcb'>
             <li>PCB</li>
@@ -47,7 +47,7 @@ function Switches() {
             <li>Stabilizers</li>
           </Link>
           <Link to='/shop/Switches'>
-            <li className='selected'>Switches</li>
+            <li>Switches</li>
           </Link>
           <Link to='/shop/Keycaps'>
             <li>Keycaps</li>
@@ -55,7 +55,7 @@ function Switches() {
         </ul>
       </section>
       <div className='main-content'>
-        <h1 className='header-shop'>Switches</h1>
+        <h1 className='header-shop'>Plate</h1>
         <ul className='items-container'>
           {itemList}  
         </ul>
@@ -64,4 +64,4 @@ function Switches() {
   );
 }
 
-export default Switches;
+export default Plate;

@@ -3,6 +3,7 @@ import Nav from './components/Nav';
 import Home from './components/Home';
 import Keyboard from './components/Keyboard';
 import Case from './components/Case';
+import Plate from './components/Plate'
 import PCB from './components/PCB';
 import Stabilizers from './components/Stabilizers';
 import Switches from './components/Switches';
@@ -60,6 +61,11 @@ function App() {
             path="/shop/case"  
             exact
             element={<Case />}
+          />
+          <Route 
+            path="/shop/plate"
+            exact
+            element={<Plate />}
           />
           <Route 
             path="/shop/pcb"  

@@ -290,6 +290,19 @@ td img {
     width: 200px;
     border-radius: 10px;
     object-fit: contain;
+
+    &:hover {
+      animation-duration: 0.25s;
+      animation-name: enlarge;
+      animation-timing-function: ease-out;
+      animation-fill-mode: forwards;
+    }
+  }
+
+  @keyframes enlarge {
+    to {
+      transform: scale(1.1);
+    }
   }
 
   a {

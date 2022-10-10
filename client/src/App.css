@@ -266,6 +266,17 @@ td img {
   border-radius: 10px;
   object-fit: contain;
 }
+.items-container img:hover {
+  animation-duration: 0.25s;
+  animation-name: enlarge;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+}
+@keyframes enlarge {
+  to {
+    transform: scale(1.1);
+  }
+}
 .items-container a {
   text-decoration: none;
   color: black;

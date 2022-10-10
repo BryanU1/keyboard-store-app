@@ -28,8 +28,6 @@
   align-items: center;
   padding: 0 30px;
   height: 10vh;
-  background-color: rgb(54, 54, 54);
-  color: white;
 }
 .nav-bar ul li:hover {
   background-color: rgb(255, 208, 122);

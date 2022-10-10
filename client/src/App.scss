@@ -33,9 +33,6 @@ $hover: rgb(255, 208, 122);
       align-items: center;
       padding: 0 30px;
       height: 10vh;
-      background-color: rgb(54, 54, 54);
-      color: white;
-
       &:hover {
         background-color: $hover;
         color: black;

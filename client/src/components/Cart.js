@@ -28,7 +28,7 @@ function Cart(prop) {
       <img src={item.imgUrl} className='cart-img'></img>
       <div className='cart-detail'>
         <h1>{item.name}</h1>
-        <p>${item.price}</p>
+        <p>${parseFloat(item.price).toFixed(2)}</p>
         <div>
           <label htmlFor='quantity'>Quantity:</label>
           <input type='number' defaultValue={item.quantity} min='1' max='100' id='quantity' onChange={handleChange} data-name={item.name}></input>

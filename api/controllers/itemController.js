@@ -188,7 +188,7 @@ exports.item_update_post = [
     });
 
     if (!errors.isEmpty()) {
-      Category.find((err, resutls) => {
+      Category.find((err, results) => {
         if (err) {
           return next(err);
         }
